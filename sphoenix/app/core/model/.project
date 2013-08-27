@@ -1,0 +1,18 @@
+<projectDescription>
+  <name>sphoenix-core-model</name>
+  <comment>Alipay sphoenix-core-model. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>sphoenix-common-dal</project>
+    <project>sphoenix-common-service-facade</project>
+    <project>sphoenix-common-service-integration</project>
+    <project>sphoenix-common-util</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>

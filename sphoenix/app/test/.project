@@ -1,0 +1,23 @@
+<projectDescription>
+  <name>sphoenix-test</name>
+  <comment>Alipay sphoenix-test. NO_M2ECLIPSE_SUPPORT: Project files created with the maven-eclipse-plugin are not supported in M2Eclipse.</comment>
+  <projects>
+    <project>sphoenix-biz-service-impl</project>
+    <project>sphoenix-biz-shared</project>
+    <project>sphoenix-common-dal</project>
+    <project>sphoenix-common-service-facade</project>
+    <project>sphoenix-common-service-integration</project>
+    <project>sphoenix-common-util</project>
+    <project>sphoenix-core-model</project>
+    <project>sphoenix-core-service</project>
+    <project>sphoenix-web-home</project>
+  </projects>
+  <buildSpec>
+    <buildCommand>
+      <name>org.eclipse.jdt.core.javabuilder</name>
+    </buildCommand>
+  </buildSpec>
+  <natures>
+    <nature>org.eclipse.jdt.core.javanature</nature>
+  </natures>
+</projectDescription>
