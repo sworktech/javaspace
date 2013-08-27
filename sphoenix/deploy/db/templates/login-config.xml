@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="GBK"?>
+<policy>
+
+<!--
+    <application-policy name = "ZFBEncryptDBPassword">
+       <authentication>
+          <login-module code = "com.alipay.zdatasource.resource.security.SecureIdentityLoginModule"
+             flag = "required">
+               <module-option name = "username">@pay.zhifb.user@</module-option>
+               <module-option name = "password">@pay.zhifb.password@</module-option>
+               <module-option name = "managedConnectionFactoryName">jboss.jca:service=LocalTxCM,name=ZFBDataSource</module-option>
+         </login-module>
+      </authentication>
+    </application-policy>
+
+-->
+</policy>
+

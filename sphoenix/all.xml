@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="GBK" ?>
+ 
+<project name="all" default="help" basedir=".">
+    <taskdef resource="net/sf/antcontrib/antlib.xml"/>
+    <macrodef name="changejar">
+        <attribute name="src"/>
+        <element name="includes"/>
+        <element name="taskitem"/>
+        <sequential>
+            <property name="dir.jar.expand" location="${dir.temp}/jar_expand"/>
+            <delete dir="${dir.jar.expand}" quiet="true"/>
+            <mkdir dir="${dir.jar.expand}"/>
+            <unjar src="@{src}" dest="${dir.jar.expand}">
+                <patternset>
+                    <includes/>
+                </patternset>
+            </unjar>
+            <taskitem/>
+            <jar destfile="@{src}" update="true">
+                <fileset dir="${dir.jar.expand}">
+                    <includes/>
+                </fileset>
+            </jar>
+            <delete dir="${dir.jar.expand}"/>
+        </sequential>
+    </macrodef>
+
+    <!-- 检测环境 -->
+    <target name="detect-env">
+        <property environment="env"/>
+
+        <condition property="osfamily-unix">
+            <os family="unix" />
+        </condition>
+        <condition property="osfamily-windows">
+            <os family="windows" />
+        </condition>
+
+        <!-- 确定数据库 -->
+        <if>
+            <not>
+                <isset property="dbmode"/>
+            </not>
+            <then>
+                <property name="dbmode" value="dev"/>
+            </then>
+        </if>
+
+        <!-- 确定日志级别 -->
+        <if>
+            <not>
+                <isset property="loglevel"/>
+            </not>
+            <then>
+                <property name="loglevel" value="warn"/> 
+            </then>
+        </if>
+
+        <property name="dir.oracle.home" location="${env.ORACLE_HOME}"/>
+        <available property="dir.oracle.home.present" file="${dir.oracle.home}/jdbc"/>
+        <!-- <available property="dir.oracle.home.present" file="${dir.oracle.home}/ojdbc14.jar"/> -->
+        <fail unless="dir.oracle.home.present">
+            部署无法继续:
+            --------------------------------------------------------------------------------
+            * 未设置ORACLE_HOME环境变量, 或环境变量指向的目录不正确(${dir.oracle.home}).
+            --------------------------------------------------------------------------------
+        </fail>
+
+        <property name="dir.sofa.src" location="${basedir}"/>
+    </target>
+
+    <target name="load-properties" depends="detect-env">
+        <loadproperties srcfile="${dir.sofa.src}/sofa.properties"/>
+        <echo>[ Application properties]</echo>
+        <echoproperties prefix="app."/>
+        <!-- 设置发布的ace路径 -->
+        <available property="dir.src.ace.present" 
+            file="${dir.sofa.src}/assembly/ace/target/${app.sysname}.ace"/>
+        <if>
+            <isset property="dir.src.ace.present"/>
+            <then>
+                <property name="dir.src.ace" 
+                    location="${dir.sofa.src}/assembly/ace/target/${app.sysname}.ace"/>
+            </then>
+            <else>
+                <property name="dir.src.ace" location="${app.sysname}.ace"/>
+                <property name="dir.src.ace.local" location="true" />
+            </else>
+        </if> 
+        <property name="sofa-config.properties" location="${dir.src.ace}/config/sofa-config.properties"/>
+
+        <available property="sofa-config.properties.present" file="${sofa-config.properties}"/>
+        <fail unless="sofa-config.properties.present">
+            部署无法继续:
+            --------------------------------------------------------------------------------
+            * 无法找到文件(${sofa-config.properties})，
+            系统需要查看这些配置信息才能正确部署与运行。
+            * 请先正确编译系统，该文件会自动生成。
+            --------------------------------------------------------------------------------
+        </fail>
+
+        <echo>load sofa properties from ${sofa-config.properties}</echo>
+        <loadproperties srcfile="${sofa-config.properties}"/>
+        <echo>load sofa properties complete</echo>
+        <!-- path -->
+        <property name="dir.core.run" location="${sphoenix_run}"/>
+        <property name="dir.core.root" location="${sphoenix_root}"/>
+        <property name="dir.core.output" location="${sphoenix_output}"/>
+        <property name="dir.core.loggingRoot" location="${sphoenix_loggingRoot}"/>
+
+        <property name="inner.domain" value="${inner_domain}"/>
+
+        <!-- mule config -->
+        <property name="net.core.host" value="${core_host}"/>
+        <property name="net.core.port" value="${core_port}"/>
+        
+        <!-- web config -->
+        <property name="net.core.web.port" value="${core_web_port}"/>
+        <property name="net.core.app.port" value="${core_app_port}"/>
+        <property name="net.core.web.domain" value="${core_domainName}"/>
+        <property name="net.core.web.host" value="www.${core_domainName}"/>
+        <property name="net.core.web.protocol" value="${core_protocol}"/>
+		<if>
+		<equals arg1="${net.core.web.protocol}" arg2="https"/>
+		<then>
+                <property name="net.core.web.port" value="80"/>
+		</then>
+		<else>
+                <property name="net.core.web.port" value="${core_web_port}"/>
+        	</else>
+        </if>
+
+        <!-- jboss -->
+		<property name="dir.cloudengine.server.deploy" location="${dir.core.run}/deploy"/>
+        <property name="dir.temp" location="${dir.core.run}/temp"/>
+
+        <!-- apache -->
+        <property name="dir.apache.run" location="${dir.core.run}/apache"/>
+        <property name="dir.apache.run.conf" location="${dir.apache.run}/conf"/>
+        <property name="dir.apache.run.var" location="${dir.apache.run}/var"/>
+        <property name="dir.libexec.run" location="${dir.core.run}/libexec"/>
+
+        <!-- oracle -->
+        <property name="dir.oracle" location="${dir.core.run}/oracle"/>
+
+        <!-- tomcat -->
+        <property name="net.port.tomcat.web" value="${net.core.web.port}"/>
+        <property name="net.port.tomcat.ajp" value="${net.core.app.port}"/>
+		<!-- sofacore系统operand1请直接改为80-->
+        <math result="net.port.naming.jnp" operand1="${net.port.tomcat.web}" operation="+" operand2="1019" datatype="int"/>
+
+
+        <pathconvert targetos="unix" property="dir.src.ace.unix">
+            <path><pathelement location="${dir.src.ace}"/></path>
+        </pathconvert>
+
+        <echo>[Boot: Directory Properties]</echo>
+        <echoproperties prefix="dir."/>
+
+        <echo>[Boot: Network Properties]</echo>
+        <echoproperties prefix="net."/>
+        <echo>[Boot: Application Properties]</echo>
+        <echoproperties prefix="app."/>
+    </target>
+
+    <!-- 设置服务器类型、组、编号、域 -->
+    <target name="init-props-server">
+        <if>
+            <or>
+                <not><isset property="targetserver"/></not>
+                <length string="${targetserver}" trim="true" length="0"/>
+            </or>
+            <then>
+                <!-- 默认服务器是dev-1-1: 所有的服务起在一台机器上，组号为1，机器号为1 -->
+                <property name="targetserver.name" value="dev-1-1"/>
+                <property name="targetserver.type" value="dev"/>
+                <property name="targetserver.group" value="1"/>
+                <property name="targetserver.order" value="1"/>
+            </then>
+            <else>
+                <property name="targetserver.name" value="${targetserver}"/>
+                <propertyregex property="targetserver.type" input="${targetserver.name}" 
+                    regexp="([a-z]+)-([0-9]*)-([0-9]*)" select="\1" casesensitive="true"/>
+                <propertyregex property="targetserver.group" input="${targetserver.name}" 
+                    regexp="([a-z]+)-([0-9]*)-([0-9]*)" select="\2" casesensitive="true"/>
+                <propertyregex property="targetserver.order" input="${targetserver.name}" 
+                    regexp="([a-z]+)-([0-9]*)-([0-9]*)" select="\3" casesensitive="true"/>
+            </else>
+        </if>
+
+        <echo message="服务器名称: ${targetserver.name}; 服务器类型: ${targetserver.type}; 服务器组号: ${targetserver.group}; 服务器编号: ${targetserver.order}; 域: ${inner.domain}"/>
+    </target>
+
+    <!-- 确定部署类型 -->
+    <target name="init-deployment-type" depends="load-properties">
+        <!-- 决定部署类型 -->
+        <if>
+            <equals arg1="${dbmode}" arg2="prod"/> 
+            <then>
+                <!-- 部署类型IV: 生产环境 -->
+                <property name="deployment.type" value="4"/>
+                <property name="deployment.mode" value="prod"/>
+            </then>
+            <else>
+                <!-- 部署类型III: 测试环境 -->
+                <property name="deployment.type" value="3"/>
+                <property name="deployment.mode" value="test"/>
+            </else>
+        </if>
+
+        <switch value="${deployment.type}">
+            <case value="1">
+                <property name="dir.htdocs" location="htdocs"/>
+            </case>
+            <case value="2">
+                <property name="dir.htdocs" location="htdocs"/>
+                <!-- 这种情况下无法直接取得 apache 目录，除非从path中查找 -->
+                <input message="请输入Apache服务器的根目录(如: c:/apache):" addproperty="dir.apache.home"/>
+            </case>
+            <!-- test -->
+            <case value="3">
+                <property name="dir.htdocs" location="${sphoenix_root}/build/htdocs"/>
+                <property name="dir.apache.home" location="${user.home}/${app.sysname}/target/apache"/>
+            </case>
+            <!-- prod -->
+            <case value="4">
+                <property name="dir.htdocs" location="${user.home}/release/run/uipage/webpages"/>
+                <property name="dir.apache.home" location="${user.home}/release/run/target/apache"/>
+            </case>
+        </switch>
+    </target>
+
+    <target name="build">
+    </target>
+
+
+	<target name="deploy-cloudengine" depends="load-properties">
+        <ant dir="deploy/cloudengine"/>
+    </target>
+	
+    <target name="deploy-bin" depends="load-properties">
+        <ant dir="deploy/bin"/>
+    </target>
+    <target name="deploy-db" depends="load-properties">
+        <ant dir="deploy/db"/>
+    </target>
+
+    <target name="deploy-apache" depends="load-properties">
+        <ant dir="deploy/apache"/>
+    </target>
+
+    <target name="deploy-libexec" depends="load-properties">
+        <ant dir="deploy/libexec"/>
+    </target>
+
+    <target name="deploy-zip" depends="load-properties,init-props-server">
+        <ant dir="deploy/setup" />
+    </target>
+
+    <target name="help">
+        <echo>
+            HELP
+            ========================================
+            TO BE WRITEN.
+        </echo>
+    </target>
+
+    <target name="deploy" depends="load-properties,init-props-server,init-deployment-type">
+        <!-- 暂时先删掉run目录 -->
+        <delete dir="${dir.core.run}"/>
+	<antcall target="deploy-cloudengine"/>
+        <antcall target="deploy-bin"/>
+        <antcall target="deploy-db"/>
+
+        <antcall target="deploy-apache"/>
+        <antcall target="deploy-libexec"/>
+    </target>
+
+    <target name="tar" depends="load-properties">
+        <if>
+            <not>
+                <isset property="dir.src.ace.local"/>
+            </not>
+            <then>
+                <ant dir="deploy/setup" />
+            </then>
+            <else>
+                <echo message="发布环境无法使用tar命令"/>
+            </else>
+        </if>
+    </target>
+	<target name="deploy-multiply" depends="load-properties">
+          <ant dir="deploy/cloudengine" target="copy-core"/>
+      </target>
+
+</project>
+

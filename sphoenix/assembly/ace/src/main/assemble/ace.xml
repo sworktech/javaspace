@@ -1,0 +1,12 @@
+<sphoenix>
+  <id>ace</id>
+  <formats>
+    <format>zip</format>
+  </formats>
+  <fileSets>
+    <fileSet>
+      <directory>target/assembly-ace.ace</directory>
+      <outputDirectory>/</outputDirectory>
+    </fileSet>
+  </fileSets>
+</sphoenix>

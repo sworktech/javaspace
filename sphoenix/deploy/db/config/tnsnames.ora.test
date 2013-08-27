@@ -1,0 +1,21 @@
+test-apay=
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.2.4.96)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = pay)
+      (SERVER = DEDICATED)
+    )
+  )
+
+history-apay=
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = 10.2.4.94)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = test)
+      (SERVER = DEDICATED)
+    )
+  )

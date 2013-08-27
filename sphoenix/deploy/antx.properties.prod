@@ -1,0 +1,54 @@
+# service
+acctrans.service.url  = http://acctrans-pool.${inner.domain}:8080
+charge.service.url  = http://charge-pool.${inner.domain}
+tradecore.service.url  =  http://trade-pool.${inner.domain}:8080
+paytask.service.mule.url  = http://paytask-pool.${inner.domain}:5200
+paytask.service.url       = http://paytask-pool.${inner.domain} 
+bankgw.service.url  = http://bankgw-pool.${inner.domain}
+directpay.service.url  = http://yzt-pool.${inner.domain}
+cif.query.url  = http://cif-pool.${inner.domain}:8080
+
+# esb
+core.esb.h2.db.home  = ${paygw.root}/esbdata
+core.esb.tcpm.port   = 6200
+
+inner.domain  = qjl.alipay.com
+
+# web
+paygw.protocol  = http
+paygw.web.port  = 80
+paygw.app.port  = 7001
+paygw.domainName  = paygw.alipay.com
+paygw.imageServer.host  = img.alipay.com
+paygw.imageServer.port  = 80
+
+#wap
+wap.protocol=https
+wap.domainName=wap.alipay.com
+wap.web.port=80
+
+#cache
+
+sofacore.cache.configReadInterval=60000
+sofacore.cache.configServerList=paygwcache-pool.qjl.alipay.com:5189
+sofacore.cache.tdbmServerConnectTimeout=5000
+
+# base 
+paygw.port         = 8080
+paygw.host         = localhost
+paygw.loggingRoot  = ${paygw.output}/logs
+paygw.output       = ${paygw.root}
+paygw.root         = /home/admin
+paygw.run          = ${paygw.root}/paygw-run
+paygw.data  = ${paygw.output}/sharedata
+paygw.data.txlog  = ${paygw.data}/txlog
+paygw.templates    = /home/admin/cai/webpages/templates
+
+# log
+paygw.inbound.timer.threshold  = 300
+paygw.loggingLevel  = warn
+paygw.loggingLevel.info  = info
+
+# taobao
+taobao.domain  = taobao.com
+taobao.port    = 80

@@ -1,0 +1,4 @@
+<h1>minipay exception</h1>
+	
+<p>
+	$!{minipayException.getMessage()}

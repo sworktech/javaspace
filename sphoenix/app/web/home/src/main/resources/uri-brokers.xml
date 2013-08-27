@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<uri-config>
+	<!-- ================================================================ -->
+	<!-- Server Level： 非java server，包括Apache server和image server等。    -->
+	<!--                                                                  -->
+	<!-- 使用方法： link.getURI('path')                                     -->
+	<!-- ================================================================ -->
+	<content-uri name="homeServer" expose="true">
+		<serverURI>${core_protocol}://www.${core_domainName}:${core_web_port}</serverURI>
+		<custom-handler
+			class="com.alipay.sofa.web.mvc.common.util.uribroker.handler.DomainReplaceHandler"
+			parameter="taobao" />
+	</content-uri>
+	
+
+	<!-- ================================================================ -->
+	<!-- Server Level： java server。                                        	  -->
+	<!--                                                                  -->
+	<!-- 使用方法： 不能直接使用，只被其它URI继承。                       			  -->
+	<!-- ================================================================ -->
+	<uri name="javaUserServer">
+		<serverURI>${core_protocol}://www.${core_domainName}:${core_web_port}</serverURI>
+	</uri>
+
+	<!-- ================================================================ -->
+	<!-- Component Level： Car。                                 	          -->
+	<!--                                                                  -->
+	<!-- 使用方法： link.setTarget('target.jhtml')                          -->
+	<!--                  .addQueryData('name', 'value')                  -->
+	<!-- ================================================================ -->
+	<component-uri name="loginModule" expose="true"
+		extends="javaUserServer">
+		<contextPath>/</contextPath>
+		<carPath>login</carPath>
+	</component-uri>
+
+	<!-- ================================================================ -->
+	<!-- Link Level： 继承前述各类links。                                 		  				  -->
+	<!--                                                                  -->
+	<!-- 使用方法： link                                                    -->
+	<!-- ================================================================ -->
+	<component-uri name="loginLink" expose="true"
+		extends="loginModule">
+		<path>user</path>
+		<target>login.vm</target>
+	</component-uri>
+
+</uri-config>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="GBK"?>
+	<config>
+		<default head="/theme/sphoenix" foot="/theme/sphoenix" >
+		<css></css>
+		<js></js>
+		<vars>
+				<title>sphoenix</title>
+				<charset>GBK</charset>
+				<contentType>text/html</contentType>
+		</vars>
+		</default>
+	</config>

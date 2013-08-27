@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<datasources>
+	 <!--
+   <local-tx-datasource>
+	  
+      <jndi-name>ZFBDataSource</jndi-name>
+      <use-java-context>true</use-java-context>
+
+      <connection-url>@pay.zhifb.url@</connection-url>
+
+      <connection-property name="SetBigStringTryClob">true</connection-property>
+      <connection-property name="defaultRowPrefetch">50</connection-property>
+      <connection-property name="oracle.jdbc.implicitStatementCacheSize">100</connection-property>
+	  
+      <driver-class>oracle.jdbc.OracleDriver</driver-class>
+
+      <exception-sorter-class-name>com.alipay.zdatasource.resource.adapter.jdbc.vendor.OracleExceptionSorter</exception-sorter-class-name>
+
+      <min-pool-size>2</min-pool-size>
+      <max-pool-size>10</max-pool-size>
+      
+      <blocking-timeout-millis>500</blocking-timeout-millis>
+      
+      <prepared-statement-cache-size>0</prepared-statement-cache-size>
+	  
+	  
+      <query-timeout>180</query-timeout>
+      <metadata><type-mapping>Oracle9i</type-mapping></metadata>
+    
+      <idle-timeout-minutes>30</idle-timeout-minutes>
+      
+      <security-domain>ZFBEncryptDBPassword</security-domain>
+   </local-tx-datasource>
+
+	<mbean code="org.jboss.naming.NamingAlias"
+		name="jboss.mq:service=NamingAlias,alias=ZFBDataSource">
+		<attribute name="ToName">java:ZFBDataSource</attribute>
+		<attribute name="FromName">ZFBDataSource</attribute>
+	</mbean>
+	-->
+</datasources>
+

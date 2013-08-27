@@ -1,0 +1,21 @@
+dev-apay=
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = pay4.devdb.alipay.net)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = pay)
+      (SERVER = DEDICATED)
+    )
+  )
+
+history-apay=
+  (DESCRIPTION =
+    (ADDRESS_LIST =
+      (ADDRESS = (PROTOCOL = TCP)(HOST = hisdb.alipay.net)(PORT = 1521))
+    )
+    (CONNECT_DATA =
+      (SID = test)
+      (SERVER = DEDICATED)
+    )
+  )

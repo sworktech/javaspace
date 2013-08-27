@@ -1,0 +1,8 @@
+			</div>
+			<div id="ServerNum" class="ft-fff">$!systemUtil.hostInfo.name</div>
+			$template.jsRef
+			$template.page.js
+
+			#parse("/la/tracker.vm")
+		</body>
+	</html>

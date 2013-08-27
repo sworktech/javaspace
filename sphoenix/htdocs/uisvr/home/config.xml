@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="GBK"?>
+<config>
+	<default path="/home">
+		<css>
+			<ref path="$css_path_to_cssfile"/>
+				</css>
+					<js>
+						<ref path="$js_path_to_cssfile"/>
+					</js>
+					<vars>
+						<title>频道名</title>
+					</vars>
+	</default>
+
+	<page path="home/sample.vm">
+		<css>
+			<ref path="$css_path_to_cssfile"/>
+				</css>
+					<js>
+						<ref path="$js_path_to_cssfile"/>
+					</js>
+					<vars>
+						<pagevar>test</pagevar>
+					</vars>
+	</page>
+</config>

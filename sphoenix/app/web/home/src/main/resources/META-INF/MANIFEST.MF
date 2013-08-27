@@ -1,0 +1,8 @@
+Bundle-Name: Alipay sphoenix Web Home Car
+Bundle-SymbolicName: com.alipay.sofa3.web.web.home
+Bundle-Version: 1.0.0
+Bundle-ManifestVersion: 2
+Bundle-Vendor: Alipay
+Require-Bundle: com.alipay.sofa3.web.biz.shared
+Bundle-Web-Name: home
+Spring-Loader: com.alipay.sofa.web.mvc.runtime

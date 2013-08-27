@@ -1,0 +1,5 @@
+#set($css_file = ["path/to/css/file.css"])
+
+#foreach($item in $css_file.entrySet())
+   $item.key = <link charset="utf-8" rel="stylesheet" href="$staticServer.getURI('/al/$item.value')" media="all" />
+#end 

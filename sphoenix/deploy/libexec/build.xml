@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK" ?>
+
+<project name="setup-libexec" default="all" basedir=".">
+
+	<target name="echo-properties">
+		<echo>[Libexec: Directory Properties]</echo>
+		<echoproperties prefix="dir.libexec."/>
+	</target>
+
+	<target name="setup-jboss-copy-libexec">
+		<copy todir="${dir.libexec.run}">
+			<fileset dir="linux">
+				<include name="**/*"/>
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="all">
+		<mkdir dir="${dir.libexec.run}"/>
+		<antcall target="echo-properties"/>
+	</target>
+</project>

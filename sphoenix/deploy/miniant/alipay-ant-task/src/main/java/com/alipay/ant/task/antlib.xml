@@ -1,0 +1,4 @@
+ï»?antlib>
+	<typedef name="localip"
+		classname="com.alipay.ant.task.DetectLocalIPAddress" />
+</antlib>

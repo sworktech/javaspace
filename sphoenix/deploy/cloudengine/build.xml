@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="GBK" ?>
+
+<project name="setup-cloudengine" default="all" basedir=".">
+	<target name="mk_run">
+		<mkdir dir="${dir.core.run}" />
+		<mkdir dir="${dir.core.run}/deploy" />
+		<mkdir dir="${dir.core.run}/work" />
+		<mkdir dir="${dir.core.run}/work/config" />
+		<mkdir dir="${dir.core.run}/libexec" />
+		<mkdir dir="${dir.temp}" />
+	</target>
+	
+	<property name="dir.target.ace" location="${dir.src.ace}"/>
+
+    <target name="echo-properties">
+        <echo message="[Application Properties]"/>
+        <echo message="application : ${app.sysname}"/>
+        <echo message="ace src dir : ${dir.target.ace}"/>
+    </target>
+        
+    <!-- 单独拷贝sofa-config.properties文件，做文件过滤 -->
+    <target name="copy-core">
+        <copy file="${dir.src.ace}/config/sofa-config.properties" 
+            todir="${dir.core.root}" filtering="true" overwrite="true" >
+            <filterset>
+                <filter token="targetserver.group" value="${targetserver.group}"/>
+                <filter token="loglevel" value="${loglevel}"/>
+		<filter token="inner.domain" value="${domainname}"/>
+		<filter token="dbmode" value="${dbmode}"/>
+            </filterset>
+        </copy>
+        <copy file="${dir.core.root}/sofa-config.properties" 
+            tofile="${dir.src.ace}/config/sofa-config.properties" overwrite="true" />
+	<copy file="${dir.core.root}/sofa-config.properties" 
+            tofile="${dir.core.run}/work/config/sofa-config.properties" overwrite="true" />
+    </target>
+
+    <!--部署ACE -->
+    <target name="deploy-ace">
+		<symlink link="${dir.cloudengine.server.deploy}/${app.sysname}.ace" resource="${dir.target.ace}"/>
+    </target>
+	
+	<target name="all">
+        <antcall target="echo-properties"/>
+		<antcall target="mk_run"/>
+        <antcall target="copy-core"/>
+        <antcall target="deploy-ace"/>
+    </target>
+	
+</project>

@@ -1,0 +1,14 @@
+<!doctype html>
+	<html>
+		<head>
+			<meta charset="${charset}" />
+				<title>${title}</title>
+			<link rel="icon" href="$imageServer.getURI('/img/icon/favicon.ico')" type="image/x-icon" />
+			<link rel="shortcut icon" href="$imageServer.getURI('/img/icon/favicon.ico')" type="image/x-icon" />
+			##CMS区域 全站tracker 页面效率统计
+			#parse("/la/tracker_time.vm")
+			$template.cssRef
+			$template.page.css
+	</head>
+	<body class="blank">
+		<div id="container">

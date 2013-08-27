@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="GBK" ?>
+
+<project name="setup-apache" default="all" basedir=".">
+	<property name="dir.bin" location="${dir.core.run}/bin"/>
+
+	<target name="echo-properties">
+		<echo>[Apache: Directory Properties]</echo>
+		<echoproperties prefix="dir.apache" />
+		<echoproperties prefix="dir.tomcat" />
+		<echo>[Apache: Network Properties]</echo>
+		<echoproperties prefix="net." />
+		<echo>[Apache: User Properties]</echo>
+		<echoproperties prefix="user." />
+	</target>
+
+	<target name="setup-apache" >
+		<if>
+			<not>
+				<equals arg1="${deployment.type}" arg2="1" />
+			</not>
+			<then>
+				<mkdir dir="${dir.apache.run}" />
+				<mkdir dir="${dir.apache.run.conf}" />
+				<mkdir dir="${dir.apache.run.var}" />
+
+				<!-- copy apache shell -->
+				<copy todir="${dir.bin}" filtering="true" overwrite="true">
+					<fileset dir="templates">
+						<include name="*.sh"/>
+						<include name="*.awk"/>
+					</fileset>
+					<filterset>
+						<filter token="sysname" value="${app.sysname}"/>
+						<filter token="dir.apache.run.conf" value="${dir.apache.run.conf}"/>
+					</filterset>
+				</copy>
+
+				<!-- copy apache conf -->
+				<copy tofile="${dir.apache.run.conf}/httpd.conf" file="conf/httpd-linux.conf" />
+				<copy tofile="${dir.apache.run.conf}/mod_jk2.conf" file="conf/mod_jk2-linux.conf" />
+
+				<copy tofile="${dir.apache.run.conf}/workers.properties" file="conf/workers.properties" />
+				<copy tofile="${dir.apache.run.conf}/uriworkermap.properties" file="conf/uriworkermap.properties" />
+
+				<replace dir="${dir.apache.run.conf}" token="@dir.apache.home@" value="${dir.apache.home}">
+					<include name="**/*" />
+				</replace>
+				<replace dir="${dir.apache.run.conf}" token="@dir.htdocs@" value="${dir.htdocs}">
+					<include name="**/*" />
+				</replace>
+				<replace dir="${dir.apache.run.conf}" token="@dir.core.run@" value="${dir.core.run}">
+					<include name="**/*" />
+				</replace>
+				<replace dir="${dir.apache.run.conf}" token="@dir.core.loggingRoot@" value="${dir.core.loggingRoot}">
+					<include name="**/*" />
+				</replace>
+
+				<replace dir="${dir.apache.run.conf}" token="@net.core.web.protocol@" value="${net.core.web.protocol}">
+					<include name="**/*" />
+				</replace>
+				<replace dir="${dir.apache.run.conf}" token="@net.core.web.domain@" value="${net.core.web.domain}">
+					<include name="**/*" />
+				</replace>
+				<replace dir="${dir.apache.run.conf}" token="@net.core.web.host@" value="${net.core.web.host}">
+					<include name="**/*" />
+				</replace>
+				<if>
+					<equals arg1="${net.core.web.protocol}" arg2="https"/>
+					<then>
+						<property name="net.core.web.port" value="80"/>
+					</then>
+					<else>
+						<property name="net.core.web.port" value="${net.core.web.port}"/>
+					</else>
+				</if>
+				<replace dir="${dir.apache.run.conf}" token="@net.core.web.port@" value="${net.core.web.port}">
+					<include name="**/*" />
+				</replace>
+				<replace dir="${dir.apache.run.conf}" token="@net.port.tomcat.ajp@" value="${net.port.tomcat.ajp}">
+					<include name="**/*" />
+				</replace>
+
+				<replace dir="${dir.apache.run.conf}" token="@user.name@" value="${user.name}">
+					<include name="**/*" />
+				</replace>
+
+				<mkdir dir="${dir.apache.home}/var" />
+				<mkdir dir="${dir.core.loggingRoot}/apache" />
+			</then>
+		</if>
+	</target>
+
+	<target name="all">
+		<antcall target="echo-properties" />
+		<antcall target="setup-apache" />
+	</target>
+</project>

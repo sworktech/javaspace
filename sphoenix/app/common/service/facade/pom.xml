@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<parent>
+		<groupId>com.alipay.sofa3.web</groupId>
+		<artifactId>sphoenix-parent</artifactId>
+		<version>1.0.0</version>
+		<relativePath>../pom.xml</relativePath>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.alipay.sofa3.web</groupId>
+	<artifactId>sphoenix-common-service-facade</artifactId>
+	<version>1.0.0</version>
+
+	<name>Alipay sphoenix-common-service-facade</name>
+	<description>Alipay sphoenix-common-service-facade</description>
+	<url>http://home.alipay.net</url>
+
+	<packaging>jar</packaging>
+
+</project>

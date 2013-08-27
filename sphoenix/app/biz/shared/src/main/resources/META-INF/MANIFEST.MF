@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alipay sphoenix Biz Shared
+Bundle-SymbolicName: com.alipay.sofa3.web.biz.shared;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Alipay
+Eclipse-LazyStart: false
+Require-Bundle: com.alipay.sofa3.web.core.service
+Resource-Filter: biz-shared.xml

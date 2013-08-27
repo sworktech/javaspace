@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<project name="setup" default="setup" basedir=".">
+
+	<property name="setup.templates" location="templates" />
+	<property name="setup.target" location="${dir.sofa.src}/target"/>
+	<property name="setup.target.deploy" location="${setup.target}/deploy"/>
+	<property name="setup.target.ace" value="${setup.target}/${app.sysname}.ace"/>
+	<property name="setup.input.setup" location=".."/>
+
+	<target name="echo-properties">
+		<echo>[setup propeties]</echo>
+		<echoproperties prefix="setup." />
+	</target>
+
+	<target name="create-dir">
+		<delete dir="${setup.target}"/>
+		<mkdir dir="${setup.target}"/>
+		<mkdir dir="${setup.target.deploy}"/>
+		<mkdir dir="${setup.target.ace}" />
+	</target>
+
+	<target name="copy-bin">
+		<!-- 拷贝setup/templates录中bin -->
+		<copy todir="${setup.target}" overwrite="true" flatten="true">
+			<fileset dir="${setup.templates}/bin"/>
+		</copy>
+	</target>
+
+	<target name="copy-deploy">
+		<!-- 拷贝发布目录中的setup/db ,setup/jboss ,setup/app ,setup/miniant-->
+		<copy todir="${setup.target.deploy}" filtering="true" overwrite="true">
+			<fileset dir="${setup.input.setup}">
+				<include name="bin/**/*.*" />
+				<include name="db/**/*.*" />
+				
+				<include name="cloudengine/**/*.*" />
+				<include name="miniant/**/*.*" />
+				<include name="apache/**/*.*" />
+				<include name="libexec/**/*.*" />
+			</fileset>
+		</copy>
+		<copy file="${dir.sofa.src}/all.xml" todir="${setup.target}" />
+		<copy file="${dir.sofa.src}/sofa.properties" todir="${setup.target}"/>
+	</target>
+
+	<target name="copy-ace">
+		<copy todir="${setup.target.ace}"  overwrite="true">
+			<fileset dir="${dir.src.ace}"/>
+		</copy>
+	</target>
+	
+	<target name="zip">
+		<tar longfile="gnu" destfile="${setup.target}/${app.sysname}.tar" >
+			<tarfileset dir="${setup.target}">
+				<include name="all.xml"/>
+				<include name="jboss_setup.*"/>
+				<include name="sofa.properties"/>
+			</tarfileset>
+			<tarfileset dir="${setup.target.deploy}"  prefix="deploy" />
+			<tarfileset dir="${setup.target.ace}"  prefix="${app.sysname}.ace" />
+		</tar>
+		<gzip src="${setup.target}/${app.sysname}.tar" destfile="${setup.target}/${app.sysname}.tgz" />
+		<delete file="${setup.target}/${app.sysname}.tar" verbose="true"/>
+	</target>
+
+	<target name="setup">
+		<antcall target="echo-properties" />
+		<antcall target="create-dir"/>
+		<antcall target="copy-bin"/>
+		<antcall target="copy-deploy"/>
+		<antcall target="copy-ace"/>
+		<antcall target="zip"/>
+	</target>
+</project>
+

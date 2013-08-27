@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+
+<fragment>
+
+	<extension target="jboss-app#MODULE">
+
+		<module>
+			<service>${bundle.fileName}</service>
+		</module>
+
+	</extension>
+	<extension target="application#MODULE">
+
+		<module>
+			<web>
+				<web-uri>sofa.war</web-uri>
+				<context-root>/</context-root>
+			</web>
+		</module>
+
+	</extension>
+		<extension target="web#FILTER-MAPPING">
+		<filter-mapping>
+      		<filter-name>AlipayDelegatingFilterProxy</filter-name>
+      		<url-pattern>/*</url-pattern>
+    	</filter-mapping>
+
+	</extension>
+	<extension target="web#FILTER">
+
+	    <filter>
+	        <filter-name>AlipayDelegatingFilterProxy</filter-name>
+	        <filter-class>com.alipay.sofa.web.mvc.common.filter.AlipayDelegatingFilterProxy</filter-class>
+	    </filter>
+	    
+	</extension>
+	<extension target="web#SERVLET">
+
+		<servlet>
+			<servlet-name>SMVCServlet</servlet-name>
+			<servlet-class>com.alipay.sofa.runtime.web.smvc.servlet.CarDispatcherServlet</servlet-class>
+			<load-on-startup>1</load-on-startup>
+		</servlet>
+
+	</extension>
+	<extension target="web#SERVLET-MAPPING">
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.xls</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.htm</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.html</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.json</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.zip</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.pdf</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.resource</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.jhtml</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.do</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.file</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.flow</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.fw</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>*.tile</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>/user/checkcode</url-pattern>
+		</servlet-mapping>
+		<servlet-mapping>
+			<servlet-name>SMVCServlet</servlet-name>
+			<url-pattern>/trade/checkcode</url-pattern>
+		</servlet-mapping>
+
+	</extension>
+
+</fragment>

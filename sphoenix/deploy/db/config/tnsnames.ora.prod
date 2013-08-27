@@ -1,0 +1,12 @@
+pay=
+ (description=
+  (address_list=
+   (address=(protocol=tcp)(host= paydb.qjl.alipay.com)(port=1521)))
+  (connect_data=
+    (sid=pay)(SERVER = DEDICATED)))
+apaycrm=
+ (description=
+  (address_list=
+   (address=(protocol=tcp)(host= apaycrm.qjl.alipay.com)(port=1521)))
+  (connect_data=
+    (sid=apaycrm)(SERVER = DEDICATED)))

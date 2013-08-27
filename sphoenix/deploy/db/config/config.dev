@@ -1,0 +1,7 @@
+pay.zhifb.url=jdbc:oracle:oci:@dev-apay
+pay.zhifb.user=zhifb
+pay.zhifb.password=162df0eed22e833fca936a518921bae9
+
+esb.zhifb.url=jdbc:oracle:oci:@dev-apay
+esb.zhifb.user=apayesb
+esb.zhifb.password=47b2be6aa3a2451a
