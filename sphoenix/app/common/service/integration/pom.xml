@@ -27,6 +27,15 @@
 		</dependency>
 
 		<!-- lib depends -->
+		
+		<!-- Webservice depends -->   
+		<dependency>
+			<groupId>com.alipay.moaprod</groupId>
+			<artifactId>moaprod-common-service-facade</artifactId>
+		</dependency>
+	
 	</dependencies>
 
+
+        
 </project>

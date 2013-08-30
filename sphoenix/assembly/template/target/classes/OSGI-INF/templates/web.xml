@@ -1,0 +1,95 @@
+<?xml version="1.0" ?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+  version="2.4">
+
+  %{LISTENER}%
+
+  %{AUTH-FILTER}%
+
+  %{STD-AUTH-FILTER}%
+
+  <!-- XXX AT: for org.nuxeo.ecm.platform.ui.web module: order of filters
+    matters. Others modules should use FILTER. -->
+  %{FIRST-FILTER}%
+
+  %{FILTER}%
+
+  %{FILTER-MAPPING}%
+
+  %{CONTEXT-PARAM}%
+
+  <error-page>
+  	<error-code>400</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>401</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>403</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>405</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>407</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>408</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>414</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>415</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>500</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>501</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+  <error-page>
+  	<error-code>503</error-code>
+  	<location>/error.htm</location>
+  </error-page>
+
+  %{LOGIN-CONFIG}%
+
+  %{SERVLET}%
+
+  %{SERVLET-MAPPING}%
+
+
+  %{SECURITY-CONSTRAINT}%
+
+  <security-role>
+    <description>The role required to access restricted content</description>
+    <role-name>admin</role-name>
+  </security-role>
+
+  <security-role>
+    <description>The role required to access restricted content</description>
+    <role-name>regular</role-name>
+  </security-role>
+
+  <session-config>
+    <session-timeout>60</session-timeout>
+  </session-config>
+
+</web-app>

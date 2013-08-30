@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alipay sphoenix Core Service Facade
+Bundle-SymbolicName: com.alipay.sofa3.web.common.service.facade;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Alipay
+Eclipse-LazyStart: false
+Resource-Filter: common-service-facade.xml

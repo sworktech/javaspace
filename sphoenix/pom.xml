@@ -200,6 +200,13 @@
 				<artifactId>sphoenix-web-home</artifactId>
 				<version>1.0.0</version>
 			</dependency>
+		
+			<dependency>
+				<groupId>com.alipay.moaprod</groupId>
+				<artifactId>moaprod-common-service-facade</artifactId>
+				<version>1.0.0.20130815</version>
+			</dependency>
+	
 		</dependencies>
 	</dependencyManagement>
 	<build>

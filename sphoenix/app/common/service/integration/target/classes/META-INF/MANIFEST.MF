@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alipay sphoenix Common Service Integration
+Bundle-SymbolicName: com.alipay.sofa3.web.common.service.integration;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Alipay
+Eclipse-LazyStart: false
+Spring-Parent: com.alipay.sofa3.web.common.dal
+Require-Bundle: com.alipay.sofa3.web.common.util
+Resource-Filter: common-service-integration.xml

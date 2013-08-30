@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="GBK"?>
+
+<config>
+    <!-- 目录配置 -->
+    <group name="path">
+        <!-- 这里的配置按照开发机器的典型风格给出 -->
+        <property name="sphoenix.root" defaultValue="/home/admin" description="开放式平台的根目录"/>
+        <property name="sphoenix.run" defaultValue="${sphoenix.root}/sphoenix-run" description="开放式平台的运行目录"/>
+        <property name="sphoenix.output" defaultValue="${sphoenix.root}" description="开放式平台的输出目录"/>
+        <property name="sphoenix.loggingRoot" defaultValue="${sphoenix.output}/logs" description="开放式平台的日志目录"/>
+        <property name="sphoenix.data" defaultValue="${sphoenix.output}/sharedata" description="开放式平台的共享存储目录"/>
+    </group>
+
+    <!-- mule配置 -->
+   <group name="url">
+		<property name="inner.domain" defaultValue="alipay-hzcnc.com" description="支付宝内部域的主域名"/>
+        <property name="sphoenix.host" defaultValue="localhost"
+            description="sphoenix的服务器主机名或IP"/>
+        <property name="sphoenix.port" defaultValue="8080" description="sphoenix的服务端口"/>
+	</group>
+	
+	<!-- web配置 -->
+	<group name="web">
+ 	<property name="sphoenix.protocol" defaultValue="http" description="sphoenix的Web访问协议"/>
+        <property name="sphoenix.web.port" defaultValue="80" description="sphoenix的Web端口"/>
+        <property name="sphoenix.domainName" defaultValue="alipay.net" description="sphoenix的域名"/>
+        <property name="sphoenix.app.port" defaultValue="7001" description="sphoenix的应用端口"/>
+        <property name="sphoenix.templates" defaultValue="${sphoenix.root}/build/htdocs/templates" description="sphoenix的模板的根目录"/>
+        <property name="sphoenix.appName" defaultValue="sphoenix" description="应用系统名称"/>
+		
+		<property name="prod.ui.template" defaultValue="${sphoenix.root}/build/htdocs/uisvr" description="uisvr1.5"/>
+		<property name="ui.tpl" defaultValue="${sphoenix.root}/uiweb/uitpl" description="uisvr2.0"/>
+		<property name="abtest.template" defaultValue="${sphoenix.root}/uiweb/abtest/templates" description="ABTest模板文件路径"/>
+		<property name="faq.root" defaultValue="${sphoenix.root}/sharedata/faqroot" description="faq"/>
+		<property name="cms.root.2" defaultValue="${sphoenix.root}/sharedata/ecmng_publish" description="CMS2"/>
+		<property name="assets.url" defaultValue="https://a.alipayobjects.com" description="assets url"/>
+		<property name="apimg.url" defaultValue="https://i.alipayobjects.com" description="apimg url"/>
+
+	</group>
+	
+	<!-- 控制配置 -->
+	<group name="control">
+        <property name="sphoenix.inbound.timer.threshold" defaultValue="300" description="积分提供服务的性能阈值"/>
+        <property name="sphoenix.loggingLevel" defaultValue="warn" description="sphoenix的日志级别"/>
+        <property name="sphoenix.loggingLevel.info" defaultValue="info" description="sphoenix信息日志的级别"/>
+	</group> 
+
+	<group name="esb">
+		<property name="core.esb.tcpm.port"  defaultValue="6200" description="ESB服务器的TCP监听端口"/>
+		<property name="core.esb.h2.db.home"  defaultValue="${sphoenix.data}/esbdata" description="本地数据存储时的根目录" />
+	</group>
+	<group name="model">
+		<property name="run.mode"  defaultValue="" description="服务调用负载模式"/>	
+	</group>
+	<group name="drm3">
+	<property name="zdrmdata.rest.url" defaultValue="http://zdrmdata.stable.alipay.net" description="drm3提供rest服务地址" />
+	</group>
+	<group name="zdal">
+		<property name="zdataconsole.service.url" defaultValue="http://zdataconsole.${inner.domain}.alipay.net:8080" description="zdal console url"/>
+	</group>
+    <script>
+	    <generate template="sofa-config.properties.vm" destfile="sofa-config.properties" charset="GBK"/>
+	</script>
+</config>

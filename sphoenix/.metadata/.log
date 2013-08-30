@@ -1,0 +1,48 @@
+!SESSION 2013-08-29 17:22:03.669 -----------------------------------------------
+eclipse.buildId=M20100909-0800
+java.version=1.6.0_21
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data E:\myspace\javaspace\sphoenix
+
+!ENTRY org.eclipse.mylyn.tasks.ui 2 0 2013-08-29 17:22:15.077
+!MESSAGE No search provider was registed. Tasks search is not available.
+
+!ENTRY org.eclipse.jface 2 0 2013-08-29 17:22:17.466
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-08-29 17:22:17.466
+!MESSAGE A conflict occurred for ALT+SHIFT+D G:
+Binding(ALT+SHIFT+D G,
+	ParameterizedCommand(Command(org.testng.eclipse.shortcut.testngSuite.debug,Debug TestNG Suite,
+		Debug TestNG Suite,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+D G,
+	ParameterizedCommand(Command(org.codehaus.groovy.eclipse.groovyScriptLaunchShortcut.debug,Debug Groovy Script,
+		Debug Groovy Script,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-08-29 17:22:17.466
+!MESSAGE A conflict occurred for ALT+SHIFT+X G:
+Binding(ALT+SHIFT+X G,
+	ParameterizedCommand(Command(org.testng.eclipse.shortcut.testngSuite.run,Run TestNG Suite,
+		Run TestNG Suite,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(ALT+SHIFT+X G,
+	ParameterizedCommand(Command(org.codehaus.groovy.eclipse.groovyScriptLaunchShortcut.run,Run Groovy Script,
+		Run Groovy Script,
+		Category(org.eclipse.debug.ui.category.run,Run/Debug,Run/Debug command category,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)

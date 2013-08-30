@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alipay assembly-template Assembly Templates
+Bundle-SymbolicName: com.alipay.sphoenix;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Alipay
+Eclipse-LazyStart: false
+Web-ContextPath: /

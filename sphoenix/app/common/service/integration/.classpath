@@ -56,6 +56,7 @@
   <classpathentry kind="var" path="M2_REPO/com/taobao/logstat/logstat-client/1.0.2.bugfix/logstat-client-1.0.2.bugfix.jar" sourcepath="M2_REPO/com/taobao/logstat/logstat-client/1.0.2.bugfix/logstat-client-1.0.2.bugfix-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/taobao/logstat/logstat-common/1.0.2/logstat-common-1.0.2.jar" sourcepath="M2_REPO/com/taobao/logstat/logstat-common/1.0.2/logstat-common-1.0.2-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/apache/mina/mina-core/1.1.5.bugfix/mina-core-1.1.5.bugfix.jar" sourcepath="M2_REPO/org/apache/mina/mina-core/1.1.5.bugfix/mina-core-1.1.5.bugfix-sources.jar"/>
+  <classpathentry kind="var" path="M2_REPO/com/alipay/moaprod/moaprod-common-service-facade/1.0.0.20130815/moaprod-common-service-facade-1.0.0.20130815.jar" sourcepath="M2_REPO/com/alipay/moaprod/moaprod-common-service-facade/1.0.0.20130815/moaprod-common-service-facade-1.0.0.20130815-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/com/taobao/remoting/network.core/1.1.7/network.core-1.1.7.jar" sourcepath="M2_REPO/com/taobao/remoting/network.core/1.1.7/network.core-1.1.7-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/ognl/ognl/2.6.9/ognl-2.6.9.jar" sourcepath="M2_REPO/ognl/ognl/2.6.9/ognl-2.6.9-sources.jar"/>
   <classpathentry kind="var" path="M2_REPO/org/eclipse/osgi/org.eclipse.osgi/3.7.2.v20120110-1416/org.eclipse.osgi-3.7.2.v20120110-1416.jar"/>

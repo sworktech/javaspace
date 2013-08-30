@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alipay com.alipay.sofa3.web Biz Service Impl
+Bundle-SymbolicName: com.alipay.sofa3.web.biz.service.impl;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Alipay
+Eclipse-LazyStart: false
+Require-Bundle: com.alipay.sofa3.web.common.service.facade, com.alipay.sofa3.web.biz.shared
+Resource-Filter: biz-service-impl.xml

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- Log4j配置文件。 -->
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+	<!-- ===================================================================== -->
+	<!-- Appenders -->
+	<!-- ===================================================================== -->
+
+	<!-- ===== [公共Appender] ===== -->
+	<!-- [公共Appender] 默认 -->
+	<appender name="DEFAULT-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-default.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 汇总错误 -->
+	<appender name="ERROR-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-error.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="threshold" value="error" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] critical错误 -->
+	<appender name="CRITICAL-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file"
+			value="${loggingRoot}/${sys_host_name}/common-critical.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<param name="threshold" value="error" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 汇总性能统计 -->
+	<appender name="PERF-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-perf.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] web性能统计 -->
+	<appender name="FILTER-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-filter.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 系统初始化 -->
+	<appender name="SYSINIT-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-sysinit.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [分布式session] 系统初始化 -->
+	<appender name="COMMONSESSION-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-session.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 恢复 -->
+	<appender name="RECOVERY-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file"
+			value="${loggingRoot}/${sys_host_name}/common-recovery.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 控制台STDOUT -->
+	<appender name="STDOUT-APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="GBK" />
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %c{2} - %m%n" />
+		</layout>
+
+	</appender>
+
+	<!-- [公共Appender] 控制台STDERR -->
+	<appender name="STDERR-APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="GBK" />
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p %c{2} - %m%n" />
+		</layout>
+
+	</appender>
+
+	<!-- [公共Appender] Jakarta commons -->
+	<appender name="APACHE-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-apache.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] 数据访问层 -->
+	<appender name="DAL-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/common-dal.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [公共Appender] Security -->
+	<appender name="SECURITY-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file"
+			value="${loggingRoot}/${sys_host_name}/common-security.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- ===== [框架Appender] ===== -->
+	<!-- [框架Appender] SOFA基础设施 - 默认 -->
+	<appender name="SOFA-DEFAULT-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-default.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [框架Appender] SOFA基础设置 - 集成总线 -->
+	<appender name="SOFA-ESB-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-esb.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [框架Appender] SOFA组件Runtime -->
+	<appender name="SOFA-RUNTIME-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-runtime.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [框架Appender] SOFA组件Service -->
+	<appender name="SOFA-SERVICE-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-service.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [框架Appender] SOFA通讯组件 HSF -->
+	<appender name="SOFA-HSF-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-hsf.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [框架Appender] SOFAMVC -->
+	<appender name="SOFA-MVC-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file" value="${loggingRoot}/${sys_host_name}/sofa-mvc.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- ===== [应用Appender] ===== -->
+	<!-- [应用Appender] 默认 -->
+	<appender name="sphoenix-DEFAULT-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file"
+			value="${loggingRoot}/${sys_host_name}/sphoenix-default.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [应用Appender] sphoenix处理流水帐 -->
+	<appender name="sphoenix-DIGEST-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file"
+			value="${loggingRoot}/${sys_host_name}/sphoenix-digest.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %m%n" />
+		</layout>
+	</appender>
+
+	<!-- [应用Appender] sphoenix核心DAL -->
+	<appender name="sphoenix-DAL-APPENDER"
+		class="com.alibaba.common.logging.spi.log4j.DailyRollingFileAppender">
+		<param name="file"
+			value="${loggingRoot}/${sys_host_name}/sphoenix-dal.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="GBK" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d [%X{loginUserEmail}/%X{loginUserID}/%X{remoteAddr}/%X{clientId} - %X{requestURIWithQueryString}] %-5p %c{2} - %m%n" />
+		</layout>
+	</appender>
+
+
+	<!-- ===================================================================== -->
+	<!-- Loggers -->
+	<!-- ===================================================================== -->
+
+	<!-- ===== [公共Logger] ===== -->
+	<!-- [公共Logger] 严重错误 -->
+	<logger name="CRITICAL" additivity="false">
+		<level value="${sphoenix_loggingLevel_info}" />
+		<appender-ref ref="CRITICAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 性能 - sphoenix引擎处理性能 -->
+	<logger name="PERF" additivity="false">
+		<level value="${sphoenix_loggingLevel_info}" />
+		<appender-ref ref="PERF-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 系统初始化 -->
+	<logger name="SYSINIT" additivity="false">
+		<level value="${sphoenix_loggingLevel_info}" />
+		<appender-ref ref="SYSINIT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 恢复 -->
+	<logger name="RECOVERY" additivity="false">
+		<level value="${sphoenix_loggingLevel_info}" />
+		<appender-ref ref="RECOVERY-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 控制台STDOUT - STDOUT -->
+	<logger name="STDOUT" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="STDOUT-APPENDER" />
+	</logger>
+
+	<!-- [公共Logger] 控制台STDERR - STDERR -->
+	<logger name="STDERR" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="STDERR-APPENDER" />
+	</logger>
+
+	<!-- ===== [框架Logger] ===== -->
+	<!-- [框架Logger] Jakarta commons - httpclient (对HTTP Client的WARN进行过滤，因为它在拒绝对方cookie时会WARN，不但无意义且占用大量存储空间) -->
+	<logger name="org.apache.commons.httpclient" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="APACHE-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] 数据访问层 - Ibatis -->
+	<logger name="com.ibatis" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] 数据访问层 - SQL -->
+	<logger name="java.sql" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] 权限系统 - 访问控制 -->
+	<logger name="com.alipay.service.security" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SECURITY-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] 集成总线 - ESB -->
+	<logger name="com.alipay.common.esb" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-ESB-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] 集成总线 - mule -->
+	<logger name="org.mule" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-ESB-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] 分布式session -->
+	<logger name="com.alipay.common.webx.session" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="COMMONSESSION-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] SOFA基础设施层 - 默认日志 -->
+	<logger name="com.alipay.sofa" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+
+	<!-- [框架Logger] SOFA Runtime层 - sofa -->
+	<logger name="com.alipay.sofa.common" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-RUNTIME-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] SOFA 通讯层 - hsf -->
+	<logger name="com.taobao.hsf" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-HSF-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [框架Logger] SOFA MVC 设施层 - 默认日志 -->
+	<logger name="com.alipay.sofa.runtime.web.smvc" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-MVC-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="org.springframework.web" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="SOFA-MVC-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- ===== [应用Logger] ===== -->
+	<!-- [应用Logger] sphoenix核心 - 默认 -->
+	<logger name="com.alipay.sofa3.web" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="sphoenix-DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [应用Logger] sphoenix核心 - DAL -->
+	<logger name="com.alipay.sofa3.web.core.dal" additivity="false">
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="sphoenix-DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- [应用Logger] 接口服务 -->
+	<logger name="com.alipay.sofa3.web.web" additivity="false">
+		<level value="${sphoenix_loggingLevel_info}" />
+		<appender-ref ref="sphoenix-WEB-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<!-- ===================================================================== -->
+	<!-- Root logger -->
+	<!-- ===================================================================== -->
+
+	<root>
+		<level value="${sphoenix_loggingLevel}" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</root>
+
+</log4j:configuration>
+

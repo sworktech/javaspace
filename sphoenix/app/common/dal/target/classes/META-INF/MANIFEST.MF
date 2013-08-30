@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Alipay sphoenix Common DAL
+Bundle-SymbolicName: com.alipay.sofa3.web.common.dal;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Vendor: Alipay
+Require-Bundle: com.alipay.sofa3.web.common.util
+Resource-Filter: common-dal.xml
